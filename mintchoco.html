@@ -5,25 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
+        /*메인 가로 크기, 세로크기 설정 및 배경 색상 지정*/
         .main {
-            width: 1600px;
+            width: 100%;
+            min-width: 1070px;
+            max-width: 1200px;
             height: auto;
-            /* background-color: rgb(196, 214, 255); */
+            background-color: rgb(196, 214, 255);
         }
 
-        .A {
-            display: flex;
-            /* margin-top: 10px; */
-        }
-
-        .B {
+        /*메인 타이틀 컨테이너칸 display 지정 후 글자 가운데 정렬 및 세로 크기 지정*/
+        .container {
+            display: flex; /*display 설정 이후 글자 가운데 정렬*/
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 300px;
         }
 
-        span {
-            margin: 30px;
+
+        /*카테고리 항목 div(#menu1~#menu5)박스 display로 가로 정렬 및 가로 크기 설정*/
+        #button_container {
+            width: 100%;
+            max-width: 1070px;
+            /* max-width: 1200px; */
+            display: flex;  /*flex 설정하여 가로로 정렬함*/
+            justify-content: space-between;     /*양쪽 끝을 기준으로 정렬*/
+        }
+
+        /*카테고리 #menu1~#menu5까지 테두리 및 색상 설정*/
+        .button-container {
+            background-color: black;
+            color: white;
+            position: relative;
+            border: 1px solid white;
+            padding: 5px 2.78% 5px 2.78%;
+            margin: 0;
+            cursor: pointer;}
+
+            .button-container div:hover {
+            transform: translateY(-5px);  /*마우스를 올리면 위쪽으로 5px 이동*/
+            transition: 0.2s linear;    /*부드럽게 움직이도록 설정*/
+        }
+
+        .button-container span {
+            padding: 5px 60px 5px 60px;
+            margin: 0px;
         }
     </style>
     <script>
@@ -32,10 +67,12 @@
             const head_con = document.createElement('div')
             const head_h1 = document.createElement('h1')
             const head_text = document.createElement('span')
+	        const button_con_container = document.createElement('div')
             document.body.append(main_con)
             main_con.appendChild(head_con)
-            main_con.appendChild(head_h1)
-            main_con.appendChild(head_text)
+            head_con.appendChild(head_h1)   //h1과 head_text는 head_con 하위로 옮겼습니당!
+            head_con.appendChild(head_text)
+	        main_con.appendChild(button_con_container)  //카테고리 div 감싸는 div 하나 새로 생성해서 main_con에 넣어주었습니당!
 
             Object.assign(main_con,{
                 id: "main1",
@@ -47,24 +84,30 @@
             })
             Object.assign(head_h1,{
                 id: "title",
-                textContent: ''
+                textContent: '안녕하세요'
             })
             Object.assign(head_text,{
                 id: "explain",
-                textContent: ''
+                textContent: '반갑습니다'
+            })
+            Object.assign(button_con_container,{    //button_con_container 새로 생성하면서 id 값 새로 생성했습니다!
+                id:"button_container"
             })
 
             const menu_box_text = ['About','Products','Technology','Downloads','Etc']
-            const head_color = ['red','green','blue','yellow','pink']
-            const head_title = ['123','234','345','456','567']
-            const head_explain = ['123','234','345','456','567']
-            // 여기에 속성들 넣기
+            const head_color = ['#aaa','green','blue','yellow','pink']
+            const head_title = ['About','Products','Technology','Downloads','Etc']
+            const head_explain = ['Custom Software Development Company.',
+            'Building tailored software to address critical needs of global enterprises.',
+            'Machine Learning. Artifical Inteligent. Cloud Platform.',
+            'You can download a free 10 days trial.',
+            'Everything is fine.']
 
             for (let i = 0; i<5; i++) {
                 const button_con = document.createElement('div')
                 const menu_box = document.createElement('div')
                 const menu_text = document.createElement('span')
-                main_con.appendChild(button_con).appendChild(menu_box).appendChild(menu_text)                
+                button_con_container.appendChild(button_con).appendChild(menu_box).appendChild(menu_text)                
                 
                 Object.assign(button_con,{
                     id:`b${i+1}`,
@@ -77,43 +120,59 @@
                     id:`menu${i+1}-title`,
                     textContent: menu_box_text[i]
                 })
-
-                button_con.addEventListener('mousemove',()=>{
-                    button_con.style = `background-color:${head_color[i]}`
+                
+                button_con.addEventListener('mouseover',()=>{
+                    button_con.style = `background-color:${head_color[i]};`
                     const head_con_hover = document.getElementById("head1")
-                    head_con_hover.style = `background-color:${head_color[i]}`
+                    head_con_hover.style.backgroundColor = head_color[i]
                     const head_title_hover = document.getElementById("title")
                     head_title_hover.textContent = head_title[i]
-                    const head_text_hover = document.getElementById("explain")                    
+                    const head_text_hover = document.getElementById("explain")                      
                     head_text_hover.textContent = head_explain[i]
                 })
-                // 버튼 위에 마우스가 올라가면 head_con 속성들이 바뀌게
+                
+                button_con.addEventListener('mouseout',()=>{
+                    button_con.style = `background-color:black`
+                    const head_con_hover = document.getElementById("head1")
+                    head_con_hover.style = `background-color:gray`
+                    const head_title_hover = document.getElementById("title")
+                    head_title_hover.textContent = 'Mint Chocolate Latte'
+                    const head_text_hover = document.getElementById("explain")                      
+                    head_text_hover.textContent = '응~괜찮아, 민초도 너 싫어해~'
+                })
             }  
         })
     </script>
 </head>
 <body>
     <!-- <div class="main">
+        <div class="container1">1</div>
+        <div class="container2">2</div>
+        <div class="container3">3</div>
+        <div class="container4">4</div>
+        <div class="container5">5</div>
         <div class="container">
             <h1 id="title">about</h1>
             <span id="explain">aaaa</span>
-        </div>        
-        <div class="button-container">
-            <div id="menu1">
-                <span id="menu1-title">bbb</span>
-            </div>
-            <div id="menu2">
-                <span id="menu2-title">ccc</span>
-            </div>
-            <div id="menu3">
-                <span id="menu3-title">ddd</span>
-            </div>
-            <div id="menu4">
-                <span id="menu4-title">eee</span>
-            </div>
-            <div id="menu5">
-                <span id="menu5-title">fff</span>
-            </div>            
+        </div>
+        
+            <div class="button-container">
+                <div id="menu1">
+                    <span id="menu1-title">bbb</span>
+                </div>
+                <div id="menu2">
+                    <span id="menu2-title">ccc</span>
+                </div>
+                <div id="menu3">
+                    <span id="menu3-title">ddd</span>
+                </div>
+                <div id="menu4">
+                    <span id="menu4-title">eee</span>
+                </div>
+                <div id="menu5">
+                    <span id="menu5-title">fff</span>
+                </div>
+            
         </div>
     </div> -->
 </body>
