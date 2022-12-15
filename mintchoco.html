@@ -68,9 +68,9 @@
 	const button_con_container = document.createElement('div')
             document.body.append(main_con)
             main_con.appendChild(head_con)
-            head_con.appendChild(head_h1)
+            head_con.appendChild(head_h1)   //h1과 head_text는 head_con 하위로 옮겼습니당!
             head_con.appendChild(head_text)
-	main_con.appendChild(button_con_container)
+	        main_con.appendChild(button_con_container)  //카테고리 div 감싸는 div 하나 새로 생성해서 main_con에 넣어주었습니당!
 
             Object.assign(main_con,{
                 id: "main1",
@@ -89,7 +89,7 @@
                 textContent: ''
             })
 
-	Object.assign(button_con_container,{
+	Object.assign(button_con_container,{    //button_con_container 새로 생성하면서 id 값 새로 생성했습니다!
 		id:"button_container"
 	})
 
