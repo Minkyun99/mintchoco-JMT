@@ -9,7 +9,7 @@
         .main {
             width: 1600px;
             height: auto;
-            background-color: rgb(196, 214, 255);
+            /* background-color: rgb(196, 214, 255); */
         }
 
         .A {
@@ -55,9 +55,9 @@
             })
 
             const menu_box_text = ['About','Products','Technology','Downloads','Etc']
-            const head_color = []
-            const head_title = []
-            const head_explain = []
+            const head_color = ['red','green','blue','yellow','pink']
+            const head_title = ['123','234','345','456','567']
+            const head_explain = ['123','234','345','456','567']
             // 여기에 속성들 넣기
 
             for (let i = 0; i<5; i++) {
@@ -78,10 +78,10 @@
                     textContent: menu_box_text[i]
                 })
 
-                button_con.addEventListener('mouseover',()=>{
-                    button_con.setAttribute('class','button-container-hover')
+                button_con.addEventListener('mousemove',()=>{
+                    button_con.style = `background-color:${head_color[i]}`
                     const head_con_hover = document.getElementById("head1")
-                    head_con_hover.style = head_color[i]
+                    head_con_hover.style = `background-color:${head_color[i]}`
                     const head_title_hover = document.getElementById("title")
                     head_title_hover.textContent = head_title[i]
                     const head_text_hover = document.getElementById("explain")                    
