@@ -5,56 +5,187 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
+        /*구글폰트*/
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@400;500;700;900&family=Poor+Story&family=Secular+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Jua&family=La+Belle+Aurore&family=Nanum+Gothic&family=Noto+Sans+KR:wght@400;500;700;900&family=Poor+Story&family=Secular+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dongle&family=Jua&family=La+Belle+Aurore&family=Nanum+Gothic&family=Noto+Sans+KR:wght@400;500;700;900&family=Poor+Story&family=Rubik+Gemstones&family=Secular+One&display=swap');
+
+        /*톤앤매너 설정*/
+        :root{
+            --red0:#a01f1f;
+            --red1:#8a1717;
+            --red2:#860f0f;
+            --mint3:#2ca585;
+            --mint4:#00a87b;
+            --brown0:#776d61;
+            --brown1:#796751;
+            --brown2:#4b443c;
+            --brown3:#38342e;
+        }
+
+        /*메인 가로 크기, 세로크기 설정 및 배경 색상 지정*/
         .main {
-            width: 1600px;
+            width: 100%;
+            /* min-width: 1070px; */
+            max-width: 1200px;
             height: auto;
             background-color: rgb(196, 214, 255);
         }
 
-        .A {
-            display: flex;
-            /* margin-top: 10px; */
-        }
-
-        .B {
+        /*메인 타이틀 컨테이너칸 display 지정 후 글자 가운데 정렬 및 세로 크기 지정*/
+        .container {
+            display: flex; /*display 설정 이후 글자 가운데 정렬*/
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 300px;
+        }
+
+        h1 {
+            font-family: 'Rubik Gemstones', cursive;
+            font-size: 60px;
+            font-weight: 400;
+            color: var(--brown2);
         }
 
         span {
-            margin: 30px;
+            color: white;
+            font-family: 'La Belle Aurore', cursive;
+            font-weight: 600;
+            font-size: 20px;
         }
+
+        #explain {
+            font-family: 'Secular One', sans-serif;
+            color: black;
+        }
+
+        /*카테고리 항목 div(#menu1~#menu5)박스 display로 가로 정렬 및 가로 크기 설정*/
+        #button_container {
+            width: 100%;
+            max-width: 1200x;
+            /* max-width: 1200px; */
+            display: flex;  /*flex 설정하여 가로로 정렬함*/
+            justify-content: space-between;     /*양쪽 끝을 기준으로 정렬*/
+        }
+
+        /*카테고리 #menu1~#menu5까지 테두리 및 색상 설정*/
+        .button-container {
+            background-color: black;
+            color: white;
+            position: relative;
+            border: 1px solid white;
+            width: 25%;            
+            text-align: center;
+            padding: 5px 0% 5px 0%;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .button-container div:hover {
+            transform: translateY(-5px);  /*마우스를 올리면 위쪽으로 5px 이동*/
+            transition: 0.2s linear;    /*부드럽게 움직이도록 설정*/
+        }
+
+        .button-container span {
+            /* padding: 5px 60px 5px 60px; */
+            margin: 0px;
+        }
+
+        
     </style>
     <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const main_con = document.createElement('div')
+            const head_con = document.createElement('div')
+            const head_h1 = document.createElement('h1')
+            const head_text = document.createElement('span')
+	        const button_con_container = document.createElement('div')
+            document.body.append(main_con)
+            main_con.appendChild(head_con)
+            head_con.appendChild(head_h1)   //h1과 head_text는 head_con 하위로 옮겼습니당!
+            head_con.appendChild(head_text)
+	        main_con.appendChild(button_con_container)  //카테고리 div 감싸는 div 하나 새로 생성해서 main_con에 넣어주었습니당!
 
+            Object.assign(main_con,{
+                id: "main1",
+                className: "main",
+            })
+            Object.assign(head_con,{
+                id: "head1",
+                className: "container"
+            })
+            Object.assign(head_h1,{
+                id: "title",
+                textContent: 'Wow'
+            })
+            Object.assign(head_text,{
+                id: "explain",
+                textContent: 'There are 16 days left until 2023.'
+            })
+            Object.assign(button_con_container,{    //button_con_container 새로 생성하면서 id 값 새로 생성했습니다!
+                id:"button_container"
+            })
+
+            const menu_box_text = ['Merry','Christmas','&','Happy','New Year']
+            const menu_box_text_color = ['green','var(--red2)','black','#547735','var(--red0)']
+            const head_color = ['var(--red2)','darkgreen','#FFD400','var(--red1)','#547735']
+            const head_title = ['Merry','Christmas','&','Happy','New Year']
+            const head_explain = ['Hello~','Sibeen & Suhwan!','I\'m very happy to hear the news','the good news is~','you are about to turn 30!']
+            // 스타일의 변화, 텍스트의 변화
+
+            for (let i = 0; i<5; i++) {
+                const button_con = document.createElement('div')
+                const menu_box = document.createElement('div')
+                const menu_text = document.createElement('span')
+                button_con_container.appendChild(button_con).appendChild(menu_box).appendChild(menu_text)                
+                
+                Object.assign(button_con,{
+                    id:`b${i+1}`,
+                    className: "button-container"
+                })
+                Object.assign(menu_box,{
+                    id:`menu${i+1}`
+                })
+                Object.assign(menu_text,{
+                    id:`menu${i+1}-title`,
+                    textContent: menu_box_text[i]
+                })
+                
+                button_con.addEventListener('mouseover',()=>{
+                    button_con.style = `background-color:${head_color[i]};`
+                    const head_con_hover = document.getElementById("head1")
+                    head_con_hover.style.backgroundColor = head_color[i]
+                    const head_title_hover = document.getElementById("title")
+                    head_title_hover.textContent = head_title[i]
+                    head_title_hover.style.color = menu_box_text_color[i]
+                    const head_text_hover = document.getElementById("explain")                      
+                    head_text_hover.textContent = head_explain[i]
+                })
+                // 마우스가 범위안에 들어오면 스타일의 변화, 텍스트의 변화 
+                
+                button_con.addEventListener('mouseout',()=>{
+                    button_con.style = `background-color:black`
+                    const head_con_hover = document.getElementById("head1")
+                    head_con_hover.style = `background-color:#66a091`
+                    const head_title_hover = document.getElementById("title")
+                    head_title_hover.textContent = 'Mint Chocolate Latte'
+                    const head_text_hover = document.getElementById("explain")                      
+                    head_text_hover.textContent = 'It\'s  \ Okay~ Mint chocolate doesn\'t  \ like you either!'
+                })
+                // 마우스가 다시 벗어나면 스타일의 초기화, 텍스트의 초기화
+            }  
+        })
     </script>
 </head>
 <body>
-    <div class="main">
-        <div class="container">
-            <h1 id="title">about</h1>
-            <span id="explain">aaaa</span>
-        </div>
-        
-            <div class="button-container">
-                <div id="menu1">
-                    <span id="menu1-title">bbb</span>
-                </div>
-                <div id="menu2">
-                    <span id="menu2-title">ccc</span>
-                </div>
-                <div id="menu3">
-                    <span id="menu3-title">ddd</span>
-                </div>
-                <div id="menu4">
-                    <span id="menu4-title">eee</span>
-                </div>
-                <div id="menu5">
-                    <span id="menu5-title">fff</span>
-                </div>
-            
-        </div>
-    </div>
 </body>
 </html>
